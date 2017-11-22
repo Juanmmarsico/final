@@ -1,6 +1,8 @@
 package main.servlet;
 
 
+import main.supervisor.controllers.Manager;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,12 +13,15 @@ import java.io.IOException;
 /**
  * Created by juanmariamarsicovetere on 13/10/2017.
  */
-@WebServlet(name = "Servlet",urlPatterns = {"/Servlet"})
-public class Servlet extends HttpServlet {
+@WebServlet(name = "MateriaPrimaServlet",urlPatterns = {"/MateriaPrimaServlet"})
+public class MateriaPrimaServlet extends HttpServlet {
+    Manager manager = Manager.getInstanced();
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println("si");
+        String consultado = request.getParameter("materiaPrimaN");
+    manager.setConsultado(consultado);
+    response.sendRedirect("consulta.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

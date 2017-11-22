@@ -11,7 +11,7 @@
   <title>Consulta de materia prima</title>
 </head>
 <body>
-<form method="post" action="Servlet">
+<form method="post" action="/MateriaPrimaServlet">
   <input type="text" id="materiaPrimaNombre" name="materiaPrimaN">
   <button type="submit">consultar</button>
 </form>
