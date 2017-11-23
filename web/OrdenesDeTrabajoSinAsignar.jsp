@@ -8,9 +8,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Ordenes de trabajo sin asignar</title>
 </head>
 <body>
-
+<%--TODO llamar al manager para traer los datos de la base de datos--%>
 </body>
 </html>
