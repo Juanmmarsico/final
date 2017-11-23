@@ -1,7 +1,7 @@
 package main.servlet;
 
 
-import main.supervisor.controllers.Manager;
+import main.Manager;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

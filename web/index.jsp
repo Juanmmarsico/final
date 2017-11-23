@@ -8,13 +8,15 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-  <title>Consulta de materia prima</title>
+  <title>Inicio</title>
 </head>
 <body>
-<form method="get" action="/MateriaPrimaServlet">
-  <input type="text" id="materiaPrimaNombre" name="materiaPrimaN">
-  <button type="submit">consultar</button>
-</form>
+<a href="consultaMateriaPrima.jsp">Consultar y pedir materia prima</a>
+
+<a href="OrdenesDeTrabajoSinAsignar.jsp">Consultar Ordenes de trabajo sin asignar</a>
+
+<a href="actualizacionMedianteArchivo.jsp">Actualizacion mediante archivo</a>
+
 </body>
 </html>
 

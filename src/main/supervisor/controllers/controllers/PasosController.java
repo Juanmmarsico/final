@@ -1,6 +1,6 @@
 package main.supervisor.controllers.controllers;
 
-import main.supervisor.controllers.Manager;
+import main.Manager;
 import main.supervisor.model.MateriaPrima;
 import main.supervisor.model.Paso;
 import main.supervisor.model.Producto;

@@ -1,7 +1,7 @@
 package main.supervisor.gui;
 
 
-import main.supervisor.controllers.Manager;
+import main.Manager;
 import main.supervisor.model.OrdenDeTrabajoDetalle;
 
 import javax.swing.*;

@@ -1,4 +1,4 @@
-<%@ page import="main.supervisor.controllers.Manager" %><%--
+<%@ page import="main.Manager" %><%--
   Created by IntelliJ IDEA.
   User: juanmariamarsicovetere
   Date: 22/11/2017

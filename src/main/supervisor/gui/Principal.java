@@ -2,7 +2,7 @@ package main.supervisor.gui;
 
 
 import main.operario.model.Operario;
-import main.supervisor.controllers.Manager;
+import main.Manager;
 import main.supervisor.model.Supervisor;
 
 import javax.swing.*;

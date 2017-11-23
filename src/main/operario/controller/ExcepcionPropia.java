@@ -1,7 +1,7 @@
 package main.operario.controller;
 
 
-import main.supervisor.controllers.Manager;
+import main.Manager;
 import main.supervisor.gui.Formulario;
 
 /**

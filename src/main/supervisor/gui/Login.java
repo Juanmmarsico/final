@@ -1,7 +1,7 @@
 package main.supervisor.gui;
 
 
-import main.supervisor.controllers.Manager;
+import main.Manager;
 
 import javax.swing.*;
 import java.awt.*;

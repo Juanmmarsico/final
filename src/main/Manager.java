@@ -1,4 +1,4 @@
-package main.supervisor.controllers;
+package main;
 
 
 import main.supervisor.gui.Principal;
