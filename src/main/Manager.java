@@ -28,4 +28,9 @@ public class Manager {
         consultado="";
     return resultado;
     }
+
+    public boolean searchNumeroOrdenCompra(int numeroDeOrden) {
+        //TODO buscar en base de datos orden de compra asociada al numero
+        return true;
+    }
 }
