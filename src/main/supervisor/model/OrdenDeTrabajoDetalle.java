@@ -6,14 +6,22 @@ package main.supervisor.model;
 public class OrdenDeTrabajoDetalle {
     private Paso paso;
     private int operario;
+    private int estado = -1;
 
+    public OrdenDeTrabajoDetalle(int estado,int operario,Paso paso) {
+        this.paso = paso;
+        this.operario= operario;
+        this.estado= estado;
+    }
     public OrdenDeTrabajoDetalle(int operario,Paso paso) {
         this.paso = paso;
         this.operario= operario;
     }
 
-
-    public OrdenDeTrabajoDetalle(int operario) {
+    public OrdenDeTrabajoDetalle(Paso paso) {
+        this.paso= paso;
+    }
+    public OrdenDeTrabajoDetalle() {
     }
 
     public Paso getPaso() {

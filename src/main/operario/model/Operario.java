@@ -1,5 +1,7 @@
 package main.operario.model;
 
+import main.supervisor.model.Persona;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 

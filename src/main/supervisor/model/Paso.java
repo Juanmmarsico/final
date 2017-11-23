@@ -1,38 +1,25 @@
 package main.supervisor.model;
 
 
-import main.operario.model.Operario;
-
-import java.util.Calendar;
-
 /**
  * Created by juanmariamarsicovetere on 14/11/2017.
  */
 public class Paso {
     private MateriaPrima materiaPrima;
-    private Operario operario;
-    private Calendar fecha;
+    private int requerido;
+    private String detalle;
 
     public Paso() {
     }
 
-    public Paso(MateriaPrima materiaPrima, Operario operario) {
+    public Paso(MateriaPrima materiaPrima, int requerido, String detalle) {
         this.materiaPrima = materiaPrima;
-        this.operario = operario;
+        this.requerido = requerido;
+        this.detalle = detalle;
     }
 
-    public Paso(MateriaPrima materiaPrima, Operario operario, Calendar fecha) {
-        this.materiaPrima = materiaPrima;
-        this.operario = operario;
-        this.fecha = fecha;
-    }
-
-    public Calendar getFecha() {
-        return fecha;
-    }
-
-    public void setFecha(Calendar fecha) {
-        this.fecha = fecha;
+    public String getDetalle() {
+        return detalle;
     }
 
     public MateriaPrima getMateriaPrima() {
@@ -43,11 +30,15 @@ public class Paso {
         this.materiaPrima = materiaPrima;
     }
 
-    public Operario getOperario() {
-        return operario;
+    public int getRequerido() {
+        return requerido;
     }
 
-    public void setOperario(Operario operario) {
-        this.operario = operario;
+    public void setRequerido(int requerido) {
+        this.requerido = requerido;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
     }
 }

@@ -35,13 +35,12 @@ public class Supervisor extends Persona{
        for (int i = 0; i<pasos.size();i++) {
             if (operarios[i]>=0){
                 pasoss.add(new OrdenDeTrabajoDetalle(operarios[i],pasos.get(i)));
+            }else{
+                pasoss.add(new OrdenDeTrabajoDetalle(pasos.get(i)));
             }
         }
-
         OrdenDeTrabajo ordenDeTrabajo = new OrdenDeTrabajo(Calendar.getInstance(),pasoss, cantidad, estimacion,  comentario,  isUrgente);
-
         ordenDeTrabajos.add(ordenDeTrabajo);
-
         return ordenDeTrabajo;
     }
 

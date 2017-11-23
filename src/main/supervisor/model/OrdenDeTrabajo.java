@@ -149,7 +149,7 @@ public class OrdenDeTrabajo {
 
     public boolean isDone() {
         for (OrdenDeTrabajoDetalle o:pasos) {
-
+//            o.getPaso().
         }
         return isDone;
     }
@@ -157,18 +157,6 @@ public class OrdenDeTrabajo {
     public void setDone(boolean done) {
         isDone = done;
     }
-
-    public ArrayList<OrdenDeTrabajoDetalle> devolverPasosParaElOperario(int legajo){
-        ArrayList<OrdenDeTrabajoDetalle> pasosOperario = new ArrayList<OrdenDeTrabajoDetalle>();
-    for (OrdenDeTrabajoDetalle p: pasos
-         ) {
-//        if(p.getOperario().getLegajo() == legajo){
-//            pasosOperario.add(p);
-//        }
-    }
-
-        return pasosOperario;
-}
 
 
 }
