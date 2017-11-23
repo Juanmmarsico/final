@@ -23,6 +23,7 @@ public class Manager {
 
     public String getConsultado() {
         String resultado= consultado;
+        //TODO buscar en base de datos lo consultado y devolver el la cantidad que hay de ese elemento
         System.out.println(resultado);
         consultado="";
     return resultado;

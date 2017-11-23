@@ -9,6 +9,11 @@
 <html>
 <head>
     <title>Materia prima</title>
+    <script language="JavaScript">
+        function resetButton() {
+            document.getElementById("materiaPrimaFormId").reset();
+        }
+    </script>
 </head>
 <body>
 <h1>hola</h1>
@@ -16,6 +21,16 @@
 
 %>
 
-<p>Current time is: <%=  new java.util.Date() + manager.getConsultado()%></p>
+<p><%= manager.getConsultado() %></p>
+
+
+<form method="post" action="/MateriaPrimaServlet" name="materiaPrimaForm" id="materiaPrimaFormId">
+<input type="text">
+
+    <button><a href="index.jsp">cancelar</a></button>
+    <input type="button" onclick="resetButton()" value="Reset">
+    <input type="submit" value="comprar">
+</form>
+
 </body>
 </html>

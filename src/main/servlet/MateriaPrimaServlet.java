@@ -19,13 +19,13 @@ public class MateriaPrimaServlet extends HttpServlet {
 
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String consultado = request.getParameter("materiaPrimaN");
-    manager.setConsultado(consultado);
-    response.sendRedirect("consulta.jsp");
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        String consultado = request.getParameter("materiaPrimaN");
+        manager.setConsultado(consultado);
+        response.sendRedirect("consulta.jsp");
     }
     }
 
