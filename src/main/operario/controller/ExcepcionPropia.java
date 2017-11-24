@@ -10,6 +10,6 @@ import main.supervisor.gui.Formulario;
 public class ExcepcionPropia extends Exception {
     private Manager manager = Manager.getInstanced();
     public ExcepcionPropia(int codigo){
-        new Formulario();
+        new Formulario(codigo);
     }
 }

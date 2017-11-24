@@ -19,9 +19,10 @@
 <h1>hola</h1>
 <% Manager manager = Manager.getInstanced();
 String s = manager.getConsultado();
+int mpEnBD= manager.getMateriaPrimaEnBD(s);
 %>
 
-<p><%= "De la materia prima " + s+ "hay disponible " + manager.getConsultado() + " Si desea registrar una compra, llene el formulario de abajo"%></p>
+<p><%= "De la materia prima " + s+ "hay disponible " + mpEnBD + " Si desea registrar una compra, llene el formulario de abajo"%></p>
 
 
 <form method="post" action="/MateriaPrimaServlet" name="materiaPrimaForm" id="materiaPrimaFormId">

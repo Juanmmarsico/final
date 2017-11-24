@@ -14,6 +14,9 @@ public class Principal extends JFrame {
     private Supervisor supervisor;
     private Operario operario;
     private Manager m= Manager.getInstanced();
+    private JMenu menu;
+    private JMenuItem menuItems;
+    private JMenuBar menuBar;
     private JButton consultar;
 
     public Principal(Operario operario){

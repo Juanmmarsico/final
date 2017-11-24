@@ -10,6 +10,9 @@ import javax.swing.*;
  */
 public class OperarioPanel extends JPanel {
 
+    Operario operario;
+
     public OperarioPanel(Operario operario) {
+    this.operario= operario;
     }
 }

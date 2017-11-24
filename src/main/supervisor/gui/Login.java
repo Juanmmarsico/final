@@ -7,6 +7,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by juanmariamarsicovetere on 14/11/2017.
@@ -23,10 +26,25 @@ public class Login extends JFrame {
     private JTextField pass;
     private JButton cancel;
     private JButton ok;
+    public static Map<Login,Thread> threads = new TreeMap<Login,Thread>();
+
+    public static Map<Login, Thread> getThreads() {
+        return threads;
+    }
+
+    public static void endThread(JFrame frame) {
+        threads.get(frame).interrupt();
+    }
+
+    public static void startNewApp() {
+        Sessions s = new Sessions(new Login());
+        Thread thread = new Thread(s);
+        threads.put(s.getLog(),thread);
+    }
 
     public Login(){
         this.add(buildPanel());
-
+        this.setMinimumSize(new Dimension(300, 300));
         this.setVisible(true);
         this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
     }
@@ -114,6 +132,24 @@ public class Login extends JFrame {
         });
 
         buttonPanel.add(cancel);
+
+        JButton prueba = new JButton("Prueba");
+        prueba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                startNewApp();
+            }
+        });
+        JFrame e=this;
+        JButton finalizarPrueba = new JButton("Prueba3");
+        finalizarPrueba.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent s) {
+                endThread(e);
+            }
+        });
+        buttonPanel.add(prueba);
+        buttonPanel.add(finalizarPrueba);
 
         return buttonPanel;
     }

@@ -21,10 +21,9 @@ public class Manager {
         this.consultado = consultado;
     }
 
+
     public String getConsultado() {
         String resultado= consultado;
-        //TODO buscar en base de datos lo consultado y devolver el la cantidad que hay de ese elemento
-        System.out.println(resultado);
         consultado="";
     return resultado;
     }
@@ -32,5 +31,11 @@ public class Manager {
     public boolean searchNumeroOrdenCompra(int numeroDeOrden) {
         //TODO buscar en base de datos orden de compra asociada al numero
         return true;
+    }
+
+    public int getMateriaPrimaEnBD(String s) {
+        //TODO buscar en base de datos lo consultado y devolver el la cantidad que hay de ese elemento
+
+        return 0;
     }
 }
