@@ -2,6 +2,7 @@ package main.supervisor.gui;
 
 
 import main.Manager;
+import sun.rmi.runtime.Log;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,6 +16,7 @@ import java.util.TreeMap;
  * Created by juanmariamarsicovetere on 14/11/2017.
  */
 public class Login extends JFrame {
+    private String sessionThread;
     private String supervisor = "Supervisor";
     private String operario = "Operario";
     private JComboBox selector;
@@ -26,23 +28,42 @@ public class Login extends JFrame {
     private JTextField pass;
     private JButton cancel;
     private JButton ok;
-    public static Map<Login,Thread> threads = new TreeMap<Login,Thread>();
+    public static Map<String,Thread> threads = new TreeMap<String ,Thread>();
 
-    public static Map<Login, Thread> getThreads() {
+    public static Map<String, Thread> getThreads() {
         return threads;
     }
 
-    public static void endThread(JFrame frame) {
-        threads.get(frame).interrupt();
+    public static void endThread(String threadName) {
+        threads.get(threadName).interrupt();
     }
 
     public static void startNewApp() {
         Sessions s = new Sessions(new Login());
         Thread thread = new Thread(s);
-        threads.put(s.getLog(),thread);
+        Login l= s.getLog();
+        l.setSessionThread(thread.getName());
+        threads.put(thread.getName(),thread);
+    }
+
+    public void setSessionThread(String sessionThread) {
+        this.sessionThread = sessionThread;
+    }
+
+    public String getSessionThread() {
+        return sessionThread;
     }
 
     public Login(){
+        sessionThread = Thread.currentThread().getName();
+        this.add(buildPanel());
+        this.setMinimumSize(new Dimension(300, 300));
+        this.setVisible(true);
+        this.setDefaultCloseOperation(this.HIDE_ON_CLOSE);
+    }
+    public Login(String sessionThread){
+
+        this.sessionThread = sessionThread;
         this.add(buildPanel());
         this.setMinimumSize(new Dimension(300, 300));
         this.setVisible(true);
@@ -140,12 +161,12 @@ public class Login extends JFrame {
                 startNewApp();
             }
         });
-        JFrame e=this;
+
         JButton finalizarPrueba = new JButton("Prueba3");
         finalizarPrueba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent s) {
-                endThread(e);
+                endThread(sessionThread);
             }
         });
         buttonPanel.add(prueba);

@@ -14,6 +14,7 @@ public class Sessions implements Runnable{
         log = new Login();
     }
 
+
     public Login getLog() {
         return log;
     }
