@@ -15,7 +15,6 @@ public class OrdenDeTrabajo {
     private String comentario;
     private boolean isUrgente;
     private Calendar fechaFin;
-    private int [] empezada;// <0 NO EMPEZADA, =0 EMPEZADA, >0 Finalizada
 
     public OrdenDeTrabajo() {
     }
@@ -28,10 +27,9 @@ public class OrdenDeTrabajo {
         this.estimacion = estimacion;
         this.comentario = comentario;
         this.isUrgente = isUrgente;
-        empezada = new int [pasos.size()];
     }
 
-    public OrdenDeTrabajo(String id, Calendar fechaDeAlta, ArrayList<Paso> pasos, int cantidad, Calendar estimacion, String comentario, boolean isUrgente, Calendar fechaFin, int empezada[]) {
+    public OrdenDeTrabajo(String id, Calendar fechaDeAlta, ArrayList<Paso> pasos, int cantidad, Calendar estimacion, String comentario, boolean isUrgente, Calendar fechaFin) {
         this.id = id;
         this.fechaDeAlta = fechaDeAlta;
         this.pasos = pasos;
@@ -40,7 +38,16 @@ public class OrdenDeTrabajo {
         this.comentario = comentario;
         this.isUrgente = isUrgente;
         this.fechaFin = fechaFin;
-        this.empezada = empezada;
+    }
+    public OrdenDeTrabajo(String id, Calendar fechaDeAlta, int cantidad, Calendar estimacion, String comentario, boolean isUrgente, Calendar fechaFin) {
+        this.id = id;
+        this.fechaDeAlta = fechaDeAlta;
+        this.pasos = pasos;
+        this.cantidad = cantidad;
+        this.estimacion = estimacion;
+        this.comentario = comentario;
+        this.isUrgente = isUrgente;
+        this.fechaFin = fechaFin;
     }
 
     public String getId() {
@@ -108,20 +115,23 @@ public class OrdenDeTrabajo {
         this.fechaFin = fechaFin;
     }
 
-    public int[] getEmpezada() {
-        return empezada;
+    public void modificarPaso(String paso){
+        for (Paso paso1: pasos) {
+            if (paso1.getDetalle().equals(paso)){
+                paso1.setEmpezada(0);
+            }
+        }
     }
 
-    public void setEmpezada(int empezada[]) {
-        this.empezada = empezada;
+    public void finalizarPaso(String paso){
+        for (Paso paso1: pasos) {
+            if (paso1.getDetalle().equals(paso)){
+                paso1.setEmpezada(1);
+            }
+        }
+
     }
-
-    public void modificarPaso(int paso){
-        empezada[paso] = 0;
-    }
-
-    public void finalizarPaso(int paso){
-        empezada[paso] = 1;
-
+    public void agregarUnPaso(Paso paso) {
+        pasos.add(paso);
     }
 }

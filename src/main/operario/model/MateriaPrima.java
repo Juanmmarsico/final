@@ -8,7 +8,7 @@ import main.operario.controller.ExcepcionPropia;
  */
 public class MateriaPrima {
     private int codigo;
-    private int cantidadRestante;
+    private int cantidadRestante = 0;
 
     public MateriaPrima() {
 

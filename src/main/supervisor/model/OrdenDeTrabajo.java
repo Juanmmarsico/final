@@ -75,16 +75,16 @@ public class OrdenDeTrabajo {
         String nextId ="";
         if (num>0 && num<100){
             if (num>0 && num<10){
-                nextId = "000"+num+"/"+year.get(Calendar.YEAR);
+                nextId = "000"+num+"/"+(""+year.get(Calendar.YEAR)).substring(2);
             }else{
-                nextId = "00"+num+"/"+year.get(Calendar.YEAR);
+                nextId = "00"+num+"/"+(""+year.get(Calendar.YEAR)).substring(2);
 
             }
         }else {
             if (num>0 && num<1000){
-                nextId = "0"+num+"/"+year.get(Calendar.YEAR);
+                nextId = "0"+num+"/"+(""+year.get(Calendar.YEAR)).substring(2);
             }else{
-                nextId = ""+num+"/"+year.get(Calendar.YEAR);
+                nextId = ""+num+"/"+(""+year.get(Calendar.YEAR)).substring(2);
             }
         }
             return nextId;
