@@ -13,10 +13,10 @@ import java.util.Calendar;
 public class OperarioDAO extends DAO {
 
     public Operario buscarOperario(int legajo){
-        String nombre ="";
-        String dni="";
-        String apellido="";
-        int legajoOperario = 0;
+        String nombre;
+        String dni;
+        String apellido;
+        int legajoOperario;
         Operario o = null;
 
 
