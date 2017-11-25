@@ -52,7 +52,12 @@ public class Operario extends Persona {
         for (OrdenDeTrabajo o: ordenes){
             if (o.getId().equals(id)){
                 o.finalizarPaso(p);
-                o.setFechaFin(fechaFin);
+                for (Paso paso: o.getPasos()) {
+                    if (paso.getDetalle().equals(p)){
+                        paso.setFechaFin(fechaFin);
+                        return true;
+                    }
+                }
                 return true;
             }
         }
@@ -73,11 +78,11 @@ public class Operario extends Persona {
         return true;
     }
 
-    public void agregarOrdenDeTrabajoUnSoloPaso(String idOrdenDeTrabajo, Calendar fechaDeAlta, Paso paso, int cantidad, Calendar estimacion, String comentario, boolean isUrgente, Calendar fechaFin) {
+    public void agregarOrdenDeTrabajoUnSoloPaso(String idOrdenDeTrabajo, Calendar fechaDeAlta, Paso paso, int cantidad, Calendar estimacion, String comentario, boolean isUrgente) {
         int id = Integer.parseInt(idOrdenDeTrabajo.substring(0,5));
         OrdenDeTrabajo ordenDeTrabajo;
         if (ordenes.get(id)!=null){
-            ordenDeTrabajo  = new OrdenDeTrabajo(idOrdenDeTrabajo,fechaDeAlta,cantidad,estimacion,comentario,isUrgente,fechaFin);
+            ordenDeTrabajo  = new OrdenDeTrabajo(idOrdenDeTrabajo,fechaDeAlta,cantidad,estimacion,comentario,isUrgente);
             ordenes.add(id,ordenDeTrabajo);
 
         }else{

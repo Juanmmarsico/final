@@ -3,6 +3,7 @@ package main.DAO;
 import main.operario.controller.ExcepcionPropia;
 import main.operario.model.MateriaPrima;
 import main.operario.model.Operario;
+import main.operario.model.OrdenDeTrabajo;
 import main.operario.model.Paso;
 
 import java.sql.CallableStatement;
@@ -31,6 +32,7 @@ public class OperarioDAO extends DAO {
                 }
 
                 //si estoy en lo correcto el Join me devolveria las 3 tablas combinadas repitiendo los datos comunes
+                //lo que estaria eliminando son los pasos que no tengan asociado su legajo
                 if (i>0){
                     nombre = r.getString("nombre");
                     apellido = r.getString("apellido");
@@ -54,10 +56,10 @@ public class OperarioDAO extends DAO {
                     if (r.wasNull()){
                         empezada = -1;
                     }
-                Paso paso = new Paso(new MateriaPrima(r.getInt("Codigo"),r.getInt("cantidadRestante")),r.getString("detalle"),empezada);
+                Paso paso = new Paso(new MateriaPrima(r.getInt("Codigo"),r.getInt("cantidadRestante")),r.getString("detalle"),empezada,fechaFin);
 
 
-                o.agregarOrdenDeTrabajoUnSoloPaso(idOrdenDeTrabajo,fechaDeAlta,paso,cantidad,estimacion,comentario,isUrgente,fechaFin);
+                o.agregarOrdenDeTrabajoUnSoloPaso(idOrdenDeTrabajo,fechaDeAlta,paso,cantidad,estimacion,comentario,isUrgente);
 
 
             }
@@ -75,5 +77,14 @@ public class OperarioDAO extends DAO {
             }
         }
         return o;
+    }
+
+    public void ActualizarEstado(OrdenDeTrabajo OrdenDeTrabajoID, Paso paso){
+        try {
+            CallableStatement preparedStatement= getConnection().prepareCall("ActualizarOperario(?,?,?) ");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

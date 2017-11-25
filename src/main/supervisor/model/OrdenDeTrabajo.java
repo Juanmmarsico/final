@@ -16,6 +16,7 @@ public class OrdenDeTrabajo {
     private Calendar estimacion;
     private String comentario;
     private boolean isUrgente;
+    private Calendar fechaFin;
     private boolean isDone=false;
 
     public OrdenDeTrabajo() {
@@ -42,6 +43,35 @@ public class OrdenDeTrabajo {
         this.estimacion = estimacion;
         this.comentario = comentario;
         this.isUrgente = isUrgente;
+       this.isDone = verifyIFIsDone();
+    }
+
+    public void setFechaFin(Calendar fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public Calendar getFechaFin() {
+        return fechaFin;
+    }
+
+    private boolean verifyIFIsDone() {
+        boolean d = true;
+        for (OrdenDeTrabajoDetalle o:pasos) {
+            if(o.getEstado()<=0){
+                d= false;
+            }
+        }
+        if (d){
+            Calendar ff =Calendar.getInstance();
+            ff.set(Calendar.YEAR,1900);
+            for (OrdenDeTrabajoDetalle o:pasos) {
+                if (o.getPaso().getFechaFin().after(ff)){
+                    ff=o.getPaso().getFechaFin();
+                }
+            }
+            fechaFin=ff;
+        }
+        return d;
     }
 
     public static String showNextId(){
@@ -148,9 +178,6 @@ public class OrdenDeTrabajo {
     }
 
     public boolean isDone() {
-        for (OrdenDeTrabajoDetalle o:pasos) {
-//            o.getPaso().
-        }
         return isDone;
     }
 

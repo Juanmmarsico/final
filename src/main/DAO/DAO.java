@@ -7,13 +7,13 @@ import java.sql.SQLException;
 /*
 * Columnas de las tablas
 * Ordenes de trabajo
-* IDOrden | FechaAlta | Cantidad | Estimacion | Comentario | Urgente | FFin | Terminada
+* IDOrden | FechaAlta | Cantidad | Estimacion | Comentario | Urgente | FechaFin | Terminada
 *
 * Orden de trabajo detalle
 * ID | IDOrden | Pasos | OperarioLegajo | Estado
 *
 *Paso
-* MateriaPrima | Detalle
+*ID | MateriaPrima | Detalle
 *
 * Materia prima
 * Codigo | CantidadRestante

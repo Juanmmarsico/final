@@ -32,4 +32,19 @@ public class OrdenDeTrabajoDetalle {
         this.paso = paso;
     }
 
+    public int getOperario() {
+        return operario;
+    }
+
+    public void setOperario(int operario) {
+        this.operario = operario;
+    }
+
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
 }

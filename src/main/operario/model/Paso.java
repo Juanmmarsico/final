@@ -1,5 +1,7 @@
 package main.operario.model;
 
+import java.util.Calendar;
+
 /**
  * Created by juanmariamarsicovetere on 14/11/2017.
  */
@@ -7,6 +9,8 @@ public class Paso {
     private MateriaPrima materiaPrima;
     private String detalle;
     private int empezada;// <0 NO EMPEZADA, =0 EMPEZADA, >0 Finalizada
+    private Calendar fechaFin;
+
 
 
     public Paso() {
@@ -27,6 +31,13 @@ public class Paso {
         this.materiaPrima = materiaPrima;
         this.detalle = detalle;
         this.empezada = empezada;
+    }
+
+    public Paso(MateriaPrima materiaPrima, String detalle, int empezada, Calendar fechaFin) {
+        this.materiaPrima = materiaPrima;
+        this.detalle = detalle;
+        this.empezada = empezada;
+        this.fechaFin = fechaFin;
     }
 
     public void setDetalle(String detalle) {
@@ -57,4 +68,11 @@ public class Paso {
         this.materiaPrima = materiaPrima;
     }
 
+    public Calendar getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Calendar fechaFin) {
+        this.fechaFin = fechaFin;
+    }
 }

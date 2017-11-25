@@ -1,6 +1,8 @@
 package main.supervisor.model;
 
 
+import java.util.Calendar;
+
 /**
  * Created by juanmariamarsicovetere on 14/11/2017.
  */
@@ -8,6 +10,8 @@ public class Paso {
     private MateriaPrima materiaPrima;
     private int requerido;
     private String detalle;
+    private Calendar fechaFin;
+
 
     public Paso() {
     }
@@ -16,6 +20,13 @@ public class Paso {
         this.materiaPrima = materiaPrima;
         this.requerido = requerido;
         this.detalle = detalle;
+    }
+
+    public Paso(MateriaPrima materiaPrima, int requerido, String detalle, Calendar fechaFin) {
+        this.materiaPrima = materiaPrima;
+        this.requerido = requerido;
+        this.detalle = detalle;
+        this.fechaFin = fechaFin;
     }
 
     public String getDetalle() {
@@ -40,5 +51,13 @@ public class Paso {
 
     public void setDetalle(String detalle) {
         this.detalle = detalle;
+    }
+
+    public Calendar getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Calendar fechaFin) {
+        this.fechaFin = fechaFin;
     }
 }

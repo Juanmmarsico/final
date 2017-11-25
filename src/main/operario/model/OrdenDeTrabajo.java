@@ -14,7 +14,6 @@ public class OrdenDeTrabajo {
     private Calendar estimacion;
     private String comentario;
     private boolean isUrgente;
-    private Calendar fechaFin;
 
     public OrdenDeTrabajo() {
     }
@@ -29,7 +28,7 @@ public class OrdenDeTrabajo {
         this.isUrgente = isUrgente;
     }
 
-    public OrdenDeTrabajo(String id, Calendar fechaDeAlta, ArrayList<Paso> pasos, int cantidad, Calendar estimacion, String comentario, boolean isUrgente, Calendar fechaFin) {
+    public OrdenDeTrabajo(String id, Calendar fechaDeAlta, int cantidad, Calendar estimacion, String comentario, boolean isUrgente) {
         this.id = id;
         this.fechaDeAlta = fechaDeAlta;
         this.pasos = pasos;
@@ -37,17 +36,6 @@ public class OrdenDeTrabajo {
         this.estimacion = estimacion;
         this.comentario = comentario;
         this.isUrgente = isUrgente;
-        this.fechaFin = fechaFin;
-    }
-    public OrdenDeTrabajo(String id, Calendar fechaDeAlta, int cantidad, Calendar estimacion, String comentario, boolean isUrgente, Calendar fechaFin) {
-        this.id = id;
-        this.fechaDeAlta = fechaDeAlta;
-        this.pasos = pasos;
-        this.cantidad = cantidad;
-        this.estimacion = estimacion;
-        this.comentario = comentario;
-        this.isUrgente = isUrgente;
-        this.fechaFin = fechaFin;
     }
 
     public String getId() {
@@ -107,13 +95,6 @@ public class OrdenDeTrabajo {
         isUrgente = urgente;
     }
 
-    public Calendar getFechaFin() {
-        return fechaFin;
-    }
-
-    public void setFechaFin(Calendar fechaFin) {
-        this.fechaFin = fechaFin;
-    }
 
     public void modificarPaso(String paso){
         for (Paso paso1: pasos) {
