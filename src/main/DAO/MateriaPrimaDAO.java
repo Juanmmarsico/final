@@ -32,4 +32,19 @@ public class MateriaPrimaDAO extends DAO{
 
         return 0;
     }
+
+    public boolean verifyIfExistOrdenDeCompra(int numeroDeOrden) {
+        try {
+            Statement s = getConnection().createStatement();
+            ResultSet r = s.executeQuery("SELECT * FROM OrdenDeCompraMateriaPrima WHERE numeroDeCompra="+numeroDeOrden);
+            if (r.next()){
+                return true;
+            }
+        } catch (SQLException e) {
+
+        }
+
+
+        return false;
+    }
 }

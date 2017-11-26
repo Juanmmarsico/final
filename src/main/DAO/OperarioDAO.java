@@ -1,10 +1,10 @@
 package main.DAO;
 
-import main.operario.controller.ExcepcionPropia;
-import main.common.MateriaPrima;
-import main.operario.model.Operario;
-import main.operario.model.OrdenDeTrabajo;
-import main.common.Paso;
+import main.modelsAndControllers.operario.controller.ExcepcionPropia;
+import main.modelsAndControllers.common.MateriaPrima;
+import main.modelsAndControllers.operario.model.Operario;
+import main.modelsAndControllers.operario.model.OrdenDeTrabajo;
+import main.modelsAndControllers.common.Paso;
 
 import java.sql.CallableStatement;
 import java.sql.ResultSet;

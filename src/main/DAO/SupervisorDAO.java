@@ -1,11 +1,11 @@
 package main.DAO;
 
-import main.common.MateriaPrima;
-import main.common.Paso;
-import main.operario.controller.ExcepcionPropia;
-import main.supervisor.model.OrdenDeTrabajo;
-import main.supervisor.model.OrdenDeTrabajoDetalle;
-import main.supervisor.model.Supervisor;
+import main.modelsAndControllers.common.MateriaPrima;
+import main.modelsAndControllers.common.Paso;
+import main.modelsAndControllers.operario.controller.ExcepcionPropia;
+import main.modelsAndControllers.supervisor.model.OrdenDeTrabajo;
+import main.modelsAndControllers.supervisor.model.OrdenDeTrabajoDetalle;
+import main.modelsAndControllers.supervisor.model.Supervisor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -32,12 +32,12 @@ public class SupervisorDAO extends DAO {
         return lastId;
     }
 
-    public Supervisor buscarSupervisor(int documento, String contrasena){
+    public Supervisor buscarSupervisor(String documento, String contrasena){
         Supervisor s = null;
 
         try {
             PreparedStatement call = getConnection().prepareCall("SELECT * FROM supervisor WHERE DniSupervisor=? AND pass=?");
-            call.setInt(1,documento);
+            call.setString(1,documento);
             call.setString(2,contrasena);
             ResultSet r = call.executeQuery();
             if (!r.next()){
@@ -65,7 +65,7 @@ public class SupervisorDAO extends DAO {
 
 
                 PreparedStatement preparedStatementOrdenes = getConnection().prepareStatement("SELECT * FROM  (join magico para sacar las ordenes con dni supervisor) WHERE dni=?");
-                preparedStatementOrdenes.setInt(1,documento);
+                preparedStatementOrdenes.setString(1,documento);
                 ResultSet resultSetOrdenesPrepared = preparedStatementOrdenes.executeQuery();
                 ArrayList<OrdenDeTrabajo> ordenesDeTrabajoSup= new ArrayList<OrdenDeTrabajo>();
                 while (resultSetOrdenes.next()){
@@ -84,7 +84,7 @@ public class SupervisorDAO extends DAO {
 
 
                 CallableStatement call1 = getConnection().prepareCall("//devolverSupervisor ?");
-                call1.setInt(1,documento);
+                call1.setString(1,documento);
                 ResultSet r1 = call.executeQuery();
                 String nombre;
                 String dni;
@@ -124,7 +124,17 @@ public class SupervisorDAO extends DAO {
 
 
          try {
-            CallableStatement callableStatement = getConnection().prepareCall("crearOrdenDeTrabajo(?,?,?,?,?,?)");
+            CallableStatement callableStatement = getConnection().prepareCall("crearOrdenDeTrabajo(?,?,?,?,?,?,?)");
+            callableStatement.setString(1,id);
+            callableStatement.setDate(2,(Date) fechaDeAlta.getTime());
+            callableStatement.setInt(3,cantidad);
+            callableStatement.setDate(4,(Date)estimacion.getTime());
+            callableStatement.setString(5,comentario);
+            callableStatement.setBoolean(6,isUrgente);
+            callableStatement.setBoolean(7,isDone);
+            callableStatement.executeQuery();
+
+            //TODO recorrer pasos y subirlos a la base de datos
         } catch (SQLException e) {
             e.printStackTrace();
         }

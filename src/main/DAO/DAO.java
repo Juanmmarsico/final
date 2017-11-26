@@ -27,6 +27,9 @@ import java.sql.SQLException;
 * Orden De Trabajo por supervisor
 * IDOrden | DNISupervisor
 *
+* Orden de compra materia prima
+* IDOrdenDeCompra | codigoMateriaPrima | cantidad
+*
 * */
 
 public class DAO {

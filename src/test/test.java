@@ -1,9 +1,6 @@
 package test;
 
-import main.operario.controller.ExcepcionPropia;
-import main.supervisor.gui.Formulario;
-import main.supervisor.gui.Login;
-import sun.rmi.runtime.Log;
+import main.gui.Login;
 
 /**
  * Created by juanmariamarsicovetere on 19/11/2017.
