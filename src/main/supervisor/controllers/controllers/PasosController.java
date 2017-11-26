@@ -1,8 +1,8 @@
 package main.supervisor.controllers.controllers;
 
 import main.Manager;
-import main.supervisor.model.MateriaPrima;
-import main.supervisor.model.Paso;
+import main.common.MateriaPrima;
+import main.common.Paso;
 import main.supervisor.model.Producto;
 
 import java.io.File;
@@ -29,7 +29,7 @@ public class PasosController extends Manager{
                     MateriaPrima materiaPrima = new MateriaPrima(Integer.parseInt(prod.substring(i,(i+1))));
                     int requerido = Integer.parseInt(prod.substring(i+1,(i+2)));
                     String  detalle = prod.substring(i+2,(i+3));
-                    pasos.add(new Paso(materiaPrima,requerido,detalle));
+                    pasos.add(new Paso(materiaPrima,detalle,requerido));
                 }
                 productos.add(new Producto(name,pasos));
             }

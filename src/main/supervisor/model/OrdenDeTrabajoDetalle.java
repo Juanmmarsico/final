@@ -1,5 +1,7 @@
 package main.supervisor.model;
 
+import main.common.Paso;
+
 /**
  * Created by juanmariamarsicovetere on 16/11/2017.
  */
@@ -8,12 +10,12 @@ public class OrdenDeTrabajoDetalle {
     private int operario;
     private int estado = -1;
 
-    public OrdenDeTrabajoDetalle(int estado,int operario,Paso paso) {
+    public OrdenDeTrabajoDetalle(int estado, int operario, Paso paso) {
         this.paso = paso;
         this.operario= operario;
         this.estado= estado;
     }
-    public OrdenDeTrabajoDetalle(int operario,Paso paso) {
+    public OrdenDeTrabajoDetalle(int operario, Paso paso) {
         this.paso = paso;
         this.operario= operario;
     }

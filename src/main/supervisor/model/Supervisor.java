@@ -1,6 +1,8 @@
 package main.supervisor.model;
 
 
+import main.common.Paso;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 

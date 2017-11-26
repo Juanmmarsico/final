@@ -1,5 +1,6 @@
 package main.operario.model;
 
+import main.common.Paso;
 import main.supervisor.model.Persona;
 
 import java.util.ArrayList;

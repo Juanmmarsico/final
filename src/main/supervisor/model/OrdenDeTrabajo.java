@@ -1,21 +1,18 @@
 package main.supervisor.model;
 
+import main.DAO.SupervisorDAO;
+import main.common.OrdenDeTrabajoCommon;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
  * Created by juanmariamarsicovetere on 12/11/2017.
  */
-public class OrdenDeTrabajo {
+public class OrdenDeTrabajo extends OrdenDeTrabajoCommon{
     private static Calendar year = Calendar.getInstance();
     private static int numero = 0;
-    private String id;
-    private Calendar fechaDeAlta;
     private ArrayList<OrdenDeTrabajoDetalle> pasos = new ArrayList<OrdenDeTrabajoDetalle>();
-    private int cantidad;
-    private Calendar estimacion;
-    private String comentario;
-    private boolean isUrgente;
     private Calendar fechaFin;
     private boolean isDone=false;
 
@@ -23,26 +20,19 @@ public class OrdenDeTrabajo {
     }
 
     public OrdenDeTrabajo(Calendar fechaDeAlta, ArrayList<OrdenDeTrabajoDetalle> pasos, int cantidad, Calendar estimacion, String comentario, boolean isUrgente) {
-        this.fechaDeAlta = fechaDeAlta;
+        super(fechaDeAlta,cantidad,estimacion,comentario,isUrgente);
         this.pasos = pasos;
-        this.cantidad = cantidad;
-        this.estimacion = estimacion;
-        this.comentario = comentario;
-        this.isUrgente = isUrgente;
+        int i = SupervisorDAO.getLastId();
+        numero = i;
         verifyCalendar();
-        generateID();
+        setId(generateID());
         numero++;
     }
 
 
     public OrdenDeTrabajo(String id, Calendar fechaDeAlta, ArrayList<OrdenDeTrabajoDetalle> pasos, int cantidad, Calendar estimacion, String comentario, boolean isUrgente) {
-        this.id = id;
-        this.fechaDeAlta = fechaDeAlta;
+        super(id,fechaDeAlta,cantidad,estimacion,comentario,isUrgente);
         this.pasos = pasos;
-        this.cantidad = cantidad;
-        this.estimacion = estimacion;
-        this.comentario = comentario;
-        this.isUrgente = isUrgente;
        this.isDone = verifyIFIsDone();
     }
 
@@ -121,22 +111,6 @@ public class OrdenDeTrabajo {
 
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public Calendar getFechaDeAlta() {
-        return fechaDeAlta;
-    }
-
-    public void setFechaDeAlta(Calendar fechaDeAlta) {
-        this.fechaDeAlta = fechaDeAlta;
-    }
-
     public ArrayList<OrdenDeTrabajoDetalle> getPasos() {
         return pasos;
     }
@@ -145,37 +119,6 @@ public class OrdenDeTrabajo {
         this.pasos = pasos;
     }
 
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public Calendar getEstimacion() {
-        return estimacion;
-    }
-
-    public void setEstimacion(Calendar estimacion) {
-        this.estimacion = estimacion;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
-    }
-
-    public boolean isUrgente() {
-        return isUrgente;
-    }
-
-    public void setUrgente(boolean urgente) {
-        isUrgente = urgente;
-    }
 
     public boolean isDone() {
         return isDone;

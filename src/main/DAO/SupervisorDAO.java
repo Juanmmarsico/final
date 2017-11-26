@@ -1,7 +1,11 @@
 package main.DAO;
 
+import main.common.MateriaPrima;
+import main.common.Paso;
 import main.operario.controller.ExcepcionPropia;
-import main.supervisor.model.*;
+import main.supervisor.model.OrdenDeTrabajo;
+import main.supervisor.model.OrdenDeTrabajoDetalle;
+import main.supervisor.model.Supervisor;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +14,23 @@ import java.util.Map;
 import java.util.TreeMap;
 
 public class SupervisorDAO extends DAO {
+
+    public static int getLastId() {
+        int lastId = 0;
+        try {
+            Statement statement= getConnection().createStatement();
+            ResultSet r = statement.executeQuery("SELECT IDOrden FROM ordenesDeTrabajo");
+            while (r.next()){
+                int aux = Integer.parseInt(r.getString("IDOrden").substring(0,5));
+                lastId = (lastId>aux?lastId:aux);
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lastId;
+    }
 
     public Supervisor buscarSupervisor(int documento, String contrasena){
         Supervisor s = null;

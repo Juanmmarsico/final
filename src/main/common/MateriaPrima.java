@@ -1,4 +1,4 @@
-package main.operario.model;
+package main.common;
 
 
 import main.operario.controller.ExcepcionPropia;
@@ -18,6 +18,10 @@ public class MateriaPrima {
 
         this.codigo = codigo;
         this.cantidadRestante = cantidadRestante;
+    }
+
+    public MateriaPrima(int codigo) {
+        this.codigo = codigo;
     }
 
     public int getCodigo() {
@@ -46,4 +50,5 @@ public class MateriaPrima {
         }
         throw new ExcepcionPropia(codigo);
     }
+
 }

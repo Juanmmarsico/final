@@ -1,5 +1,7 @@
 package main.supervisor.model;
 
+import main.common.Paso;
+
 import java.util.ArrayList;
 
 public class Producto {

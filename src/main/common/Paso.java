@@ -1,4 +1,4 @@
-package main.operario.model;
+package main.common;
 
 import java.util.Calendar;
 
@@ -34,6 +34,12 @@ public class Paso {
     }
 
     public Paso(MateriaPrima materiaPrima, String detalle, int empezada, Calendar fechaFin) {
+        this.materiaPrima = materiaPrima;
+        this.detalle = detalle;
+        this.empezada = empezada;
+        this.fechaFin = fechaFin;
+    }
+    public Paso(MateriaPrima materiaPrima,  int empezada, String detalle,Calendar fechaFin) {
         this.materiaPrima = materiaPrima;
         this.detalle = detalle;
         this.empezada = empezada;
@@ -75,4 +81,5 @@ public class Paso {
     public void setFechaFin(Calendar fechaFin) {
         this.fechaFin = fechaFin;
     }
+
 }
