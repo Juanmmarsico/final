@@ -54,8 +54,8 @@ public class Formulario extends JFrame{
         cantidadField.setColumns(10);
         cantidadField.addKeyListener(new KeyAdapter() {
             @Override
-            public void keyTyped(KeyEvent e) {
-                if (!(e.getKeyChar() =='0' || e.getKeyChar() =='1' || e.getKeyChar() =='2' || e.getKeyChar() =='3' || e.getKeyChar() =='4' || e.getKeyChar() =='5' || e.getKeyChar() =='6' || e.getKeyChar() =='7' || e.getKeyChar() =='8' || e.getKeyChar() =='9' )){
+            public void keyPressed(KeyEvent e) {
+                if (!(e.getKeyChar() =='0' || e.getKeyChar() =='1' || e.getKeyChar() =='2' || e.getKeyChar() =='3' || e.getKeyChar() =='4' || e.getKeyChar() =='5' || e.getKeyChar() =='6' || e.getKeyChar() =='7' || e.getKeyChar() =='8' || e.getKeyChar() =='9' || e.getKeyCode()==KeyEvent.VK_BACK_SPACE)){
                     e.consume();
                 }
             }
