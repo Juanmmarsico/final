@@ -129,4 +129,11 @@ public class OrdenDeTrabajo extends OrdenDeTrabajoCommon{
     }
 
 
+    @Override
+    public String toString() {
+        return "OrdenDeTrabajo{" +
+                "isDone=" + isDone +
+                "} " + super.toString();
+    }
+
 }

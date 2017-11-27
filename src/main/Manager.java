@@ -111,8 +111,9 @@ public class Manager {
         this.materiaPrimaDAO = materiaPrimaDAO;
     }
 
-    public void buscarOperario(String text) {
+    public boolean buscarOperario(String text) {
         int legajo = Integer.parseInt(text);
         operariosController= new OperariosController(operarioDAO.buscarOperario(legajo));
+        return operariosController.getOperario() == null;
     }
 }

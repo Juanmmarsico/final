@@ -84,5 +84,16 @@ public abstract class OrdenDeTrabajoCommon  {
         isUrgente = urgente;
     }
 
+    @Override
+    public String toString() {
+        return "OrdenDeTrabajo{" +
+                "id='" + id + '\'' +
+                ", cantidad=" + cantidad +
+                ", estimacion=" + estimacion +
+                ", comentario='" + comentario + '\'' +
+                ", isUrgente=" + isUrgente +
+                '}';
+    }
+
 
 }

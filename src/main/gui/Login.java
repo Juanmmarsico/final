@@ -125,18 +125,24 @@ public class Login extends JFrame {
 
     public JPanel buildButtonsPanel(){
         JPanel buttonPanel = new JPanel();
+        Login l = this;
         ok = new JButton("ok");
         ok.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 Manager m =Manager.getInstanced();
                 if(selector.getSelectedItem().equals(supervisor)){
-                    m.validarSupervisor(user.getText(),pass.getText());
+                   if( m.validarSupervisor(user.getText(),pass.getText())){
+                       new Principal(m.getSupervisorController().getSupervisor());
+                   }
                     System.out.println(user.getText()+"        "+pass.getText());
                 }else{
-                    m.buscarOperario(user.getText());
-                    System.out.println(user.getText());
+                    if(m.buscarOperario(user.getText())){
+                        new Principal(m.getOperariosController().getOperario());
+                    }
+                    l.hide();
                 }
+
             }
         });
 

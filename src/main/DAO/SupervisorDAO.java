@@ -8,8 +8,10 @@ import main.modelsAndControllers.supervisor.model.OrdenDeTrabajoDetalle;
 import main.modelsAndControllers.supervisor.model.Supervisor;
 
 import java.sql.*;
-import java.sql.Date;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class SupervisorDAO extends DAO {
 
@@ -156,5 +158,26 @@ public class SupervisorDAO extends DAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public ArrayList<String> getOperariosParaAsignacion()  {
+        ArrayList<String> arrayList = new ArrayList<String>();
+
+        try {
+            Statement statement = getConnection().createStatement();
+            ResultSet r = statement.executeQuery("SELECT * FROM operarios");
+            while (r.next()){
+                String nombre =r.getString("Nombre");
+                String apellido=r.getString("Apellido");
+                String dni = r.getString("dni");
+                int legajo = r.getInt("legajo");
+
+                String operario = ""+ legajo+"\t"+nombre+"\t"+apellido+"\t"+dni;
+                arrayList.add(operario);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return arrayList;
     }
 }
