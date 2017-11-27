@@ -2,7 +2,9 @@ package main.modelsAndControllers.operario.controller;
 
 
 import main.Manager;
-import main.gui.Formulario;
+import main.gui.operario.Formulario;
+
+import javax.swing.*;
 
 /**
  * Created by juanmariamarsicovetere on 17/11/2017.
@@ -23,5 +25,13 @@ public class ExcepcionPropia extends Exception {
 //        JOptionPane.showMessageDialog(Login.get);
 
         System.out.println(motivo+" " +codigo);
+    }
+
+    public ExcepcionPropia(){
+
+    }
+
+    public void sinResultado() {
+        JOptionPane.showMessageDialog(new JFrame(), "no hay resultados en la busqueda", "no hay resultados en la busqueda", JOptionPane.ERROR_MESSAGE);
     }
 }

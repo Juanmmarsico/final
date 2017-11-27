@@ -64,6 +64,30 @@ public class Supervisor extends Persona{
         ordenDeTrabajos.get(posicionOrdenesDeTrabajo.get(id)).setPasos(ordenDeTrabajoDetalles);
     }
 
+    public String getPass() {
+        return pass;
+    }
+
+    public void setPass(String pass) {
+        this.pass = pass;
+    }
+
+    public ArrayList<OrdenDeTrabajo> getOrdenDeTrabajos() {
+        return ordenDeTrabajos;
+    }
+
+    public void setOrdenDeTrabajos(ArrayList<OrdenDeTrabajo> ordenDeTrabajos) {
+        this.ordenDeTrabajos = ordenDeTrabajos;
+    }
+
+    public Map<String, Integer> getPosicionOrdenesDeTrabajo() {
+        return posicionOrdenesDeTrabajo;
+    }
+
+    public void setPosicionOrdenesDeTrabajo(Map<String, Integer> posicionOrdenesDeTrabajo) {
+        this.posicionOrdenesDeTrabajo = posicionOrdenesDeTrabajo;
+    }
+
     @Override
     public boolean logIn(String pass) {
         return pass.equals(this.pass);

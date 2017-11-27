@@ -1,4 +1,4 @@
-package main.gui;
+package main.gui.supervisor;
 
 
 import main.Manager;

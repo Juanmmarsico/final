@@ -8,10 +8,8 @@ import main.modelsAndControllers.supervisor.model.OrdenDeTrabajoDetalle;
 import main.modelsAndControllers.supervisor.model.Supervisor;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Map;
-import java.util.TreeMap;
+import java.sql.Date;
+import java.util.*;
 
 public class SupervisorDAO extends DAO {
 
@@ -36,55 +34,10 @@ public class SupervisorDAO extends DAO {
         Supervisor s = null;
 
         try {
-            PreparedStatement call = getConnection().prepareCall("SELECT * FROM supervisor WHERE DniSupervisor=? AND pass=?");
-            call.setString(1,documento);
-            call.setString(2,contrasena);
-            ResultSet r = call.executeQuery();
-            if (!r.next()){
-                throw new ExcepcionPropia("no se encontro el supervisor",documento);
-            }else{
+            ArrayList<OrdenDeTrabajo> ordenesDeTrabajoSup = searchOrdenesDeTrabajo(documento,contrasena);
 
-                Statement statementOrdenes = getConnection().createStatement();
-                ResultSet resultSetOrdenes = statementOrdenes.executeQuery("SELECT * FROM  (join magico para sacar las ordenes con dni supervisor y que me devuelve el id de la orden de trabajo) WHERE dni="+documento);
-                Map<String,ArrayList<OrdenDeTrabajoDetalle>> pasos= new TreeMap<String ,ArrayList<OrdenDeTrabajoDetalle>>();
-                while (resultSetOrdenes.next()){
-                   String idOrden= r.getString("IDOrden");
-                   Calendar fechaFin = Calendar.getInstance();
-                   fechaFin.setTime(r.getDate("FechaFin"));
-                    Paso paso = new Paso(new MateriaPrima(r.getInt("codigoMateriaPrima")),r.getInt("requerido"),r.getString("detalle"),fechaFin);
-                    OrdenDeTrabajoDetalle ordenDeTrabajoDetalle = new OrdenDeTrabajoDetalle(r.getInt("estado"),r.getInt("operario"),paso);
-
-                    if (pasos.containsKey(idOrden)){
-                        pasos.get(idOrden).add(ordenDeTrabajoDetalle);
-                    }else{
-                        ArrayList<OrdenDeTrabajoDetalle> pasosArray = new ArrayList<OrdenDeTrabajoDetalle>();
-                        pasosArray.add(ordenDeTrabajoDetalle);
-                        pasos.put(idOrden,pasosArray);
-                    }
-                }
-
-
-                PreparedStatement preparedStatementOrdenes = getConnection().prepareStatement("SELECT * FROM  (join magico para sacar las ordenes con dni supervisor) WHERE dni=?");
-                preparedStatementOrdenes.setString(1,documento);
-                ResultSet resultSetOrdenesPrepared = preparedStatementOrdenes.executeQuery();
-                ArrayList<OrdenDeTrabajo> ordenesDeTrabajoSup= new ArrayList<OrdenDeTrabajo>();
-                while (resultSetOrdenes.next()){
-                    String id = r.getString("IDOrden");
-                    Calendar fechaDeAlta=Calendar.getInstance();
-                    fechaDeAlta.setTime(r.getDate("fechaDeAlta"));
-                    ArrayList< OrdenDeTrabajoDetalle > ordenDeTrabajoDetalles = pasos.get(r.getString(id));
-                    int cantidad = r.getInt("cantidad");
-                    Calendar estimacion = Calendar.getInstance();
-                    estimacion.setTime(r.getDate("Estimacion"));
-                    String comentario = r.getString("Comentario");
-                    boolean isUrgente= r.getBoolean("Urgente");
-                    OrdenDeTrabajo ordenDeTrabajo = new OrdenDeTrabajo(id,fechaDeAlta,ordenDeTrabajoDetalles,cantidad,estimacion,comentario,isUrgente);
-                    ordenesDeTrabajoSup.add(ordenDeTrabajo);
-                }
-
-
-                CallableStatement call1 = getConnection().prepareCall("//devolverSupervisor ?");
-                call1.setString(1,documento);
+                CallableStatement call = getConnection().prepareCall("//devolverSupervisor ?");
+                call.setString(1,documento);
                 ResultSet r1 = call.executeQuery();
                 String nombre;
                 String dni;
@@ -101,7 +54,7 @@ public class SupervisorDAO extends DAO {
                     }
 
 
-                }
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (ExcepcionPropia excepcionPropia) {
@@ -110,6 +63,71 @@ public class SupervisorDAO extends DAO {
 
         return s;
     }
+    public ArrayList<OrdenDeTrabajo> searchOrdenesDeTrabajo(String documento, String contrasena) throws SQLException, ExcepcionPropia {
+        ArrayList<OrdenDeTrabajo> ordenesDeTrabajoSup = new ArrayList<OrdenDeTrabajo>();
+
+        PreparedStatement call = getConnection().prepareCall("SELECT * FROM supervisor WHERE DniSupervisor=? AND pass=?");
+        call.setString(1,documento);
+        call.setString(2,contrasena);
+        ResultSet r = call.executeQuery();
+        if (!r.next()){
+            throw new ExcepcionPropia("no se encontro el supervisor",documento);
+        }else {
+
+            Statement statementOrdenes = getConnection().createStatement();
+            ResultSet resultSetOrdenes = statementOrdenes.executeQuery("SELECT * FROM  (join magico para sacar las ordenes con dni supervisor y que me devuelve el id de la orden de trabajo) WHERE dni=" + documento);
+            Map<String, ArrayList<OrdenDeTrabajoDetalle>> pasos = new TreeMap<String, ArrayList<OrdenDeTrabajoDetalle>>();
+            while (resultSetOrdenes.next()) {
+                String idOrden = r.getString("IDOrden");
+                Calendar fechaFin = Calendar.getInstance();
+                fechaFin.setTime(r.getDate("FechaFin"));
+                Paso paso = new Paso(new MateriaPrima(r.getInt("codigoMateriaPrima")), r.getInt("requerido"), r.getString("detalle"), fechaFin);
+                OrdenDeTrabajoDetalle ordenDeTrabajoDetalle = new OrdenDeTrabajoDetalle(r.getInt("estado"), r.getInt("operario"), paso);
+
+                if (pasos.containsKey(idOrden)) {
+                    pasos.get(idOrden).add(ordenDeTrabajoDetalle);
+                } else {
+                    ArrayList<OrdenDeTrabajoDetalle> pasosArray = new ArrayList<OrdenDeTrabajoDetalle>();
+                    pasosArray.add(ordenDeTrabajoDetalle);
+                    pasos.put(idOrden, pasosArray);
+                }
+            }
+
+
+            PreparedStatement preparedStatementOrdenes = getConnection().prepareStatement("SELECT * FROM  (join magico para sacar las ordenes con dni supervisor) WHERE dni=?");
+            preparedStatementOrdenes.setString(1, documento);
+            ResultSet resultSetOrdenesPrepared = preparedStatementOrdenes.executeQuery();
+            while (resultSetOrdenes.next()) {
+                String id = r.getString("IDOrden");
+                Calendar fechaDeAlta = Calendar.getInstance();
+                fechaDeAlta.setTime(r.getDate("fechaDeAlta"));
+                ArrayList<OrdenDeTrabajoDetalle> ordenDeTrabajoDetalles = pasos.get(r.getString(id));
+                int cantidad = r.getInt("cantidad");
+                Calendar estimacion = Calendar.getInstance();
+                estimacion.setTime(r.getDate("Estimacion"));
+                String comentario = r.getString("Comentario");
+                boolean isUrgente = r.getBoolean("Urgente");
+                OrdenDeTrabajo ordenDeTrabajo = new OrdenDeTrabajo(id, fechaDeAlta, ordenDeTrabajoDetalles, cantidad, estimacion, comentario, isUrgente);
+                ordenesDeTrabajoSup.add(ordenDeTrabajo);
+            }
+
+        }
+            return ordenesDeTrabajoSup;
+        }
+    public ArrayList<OrdenDeTrabajoDetalle> searchOrdenesDeTrabajo(Supervisor supervisor,String consulta) {
+        String documento = supervisor.getDni();
+        String contrasena = supervisor.getPass();//habia pensado en llamar a la base de datos, para que me traiga la ultima informacion, pero como no lo implemente no lo puedo testear
+        ArrayList<OrdenDeTrabajoDetalle> sup = new ArrayList<OrdenDeTrabajoDetalle>();
+
+            ArrayList<OrdenDeTrabajo>  aux= new ArrayList<OrdenDeTrabajo>(supervisor.getOrdenDeTrabajos());
+            for(OrdenDeTrabajo o: aux){
+                if(o.getId().equals(consulta)){
+                    sup = o.getPasos();
+                }
+            }
+        return sup;
+    }
+
 
     public void cargarOrdenDeTrabajo(OrdenDeTrabajo ordenDeTrabajo){
          String id=ordenDeTrabajo.getId();

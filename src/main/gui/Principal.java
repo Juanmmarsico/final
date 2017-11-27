@@ -1,6 +1,8 @@
 package main.gui;
 
 
+import main.gui.operario.OperarioPanel;
+import main.gui.supervisor.SupervisorPanel;
 import main.modelsAndControllers.operario.model.Operario;
 import main.Manager;
 import main.modelsAndControllers.supervisor.model.Supervisor;

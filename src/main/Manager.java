@@ -50,17 +50,12 @@ public class Manager {
     }
 
     public boolean searchNumeroOrdenCompra(int numeroDeOrden) {
-        //TODO buscar en base de datos orden de compra asociada al numero
-        materiaPrimaDAO.verifyIfExistOrdenDeCompra(numeroDeOrden);
-
-        return true;
+        return materiaPrimaDAO.verifyIfExistOrdenDeCompra(numeroDeOrden);
     }
 
     public int getMateriaPrimaEnBD(String s) {
-        //TODO buscar en base de datos lo consultado y devolver el la cantidad que hay de ese elemento
         int n  = Integer.parseInt(s);
-        materiaPrimaDAO.getCantidadRestante(n);
-        return 0;
+        return materiaPrimaDAO.getCantidadRestante(n);
     }
 
     public boolean validarSupervisor(String text, String text1) {
