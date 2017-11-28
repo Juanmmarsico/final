@@ -2,6 +2,7 @@ package main.gui;
 
 
 import main.Manager;
+import main.modelsAndControllers.operario.controller.ExcepcionPropia;
 
 import javax.swing.*;
 import java.awt.*;
@@ -132,13 +133,30 @@ public class Login extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 Manager m =Manager.getInstanced();
                 if(selector.getSelectedItem().equals(supervisor)){
-                   if( m.validarSupervisor(user.getText(),pass.getText())){
-                       new Principal(m.getSupervisorController().getSupervisor());
-                   }
+                    try {
+                        if (m.validarSupervisor(user.getText(), pass.getText())) {
+                            new Principal(m.getSupervisorController().getSupervisor());
+                        }
+                    }catch (NullPointerException e1){
+                        new ExcepcionPropia("no existe ese usuario",user.getText());
+                    }
                     System.out.println(user.getText()+"        "+pass.getText());
                 }else{
+                    try {
+                        if(m.buscarOperario(user.getText())){
+                            new Principal(m.getOperariosController().getOperario());
+
+                        }
+                    }catch (NullPointerException exception){
+                        try {
+                            throw new ExcepcionPropia("no existe ese usuario",user.getText());
+                        } catch (ExcepcionPropia excepcionPropia) {
+                        }
+
+                    }
                     if(m.buscarOperario(user.getText())){
                         new Principal(m.getOperariosController().getOperario());
+
                     }
                     l.hide();
                 }

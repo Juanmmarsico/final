@@ -45,7 +45,10 @@ public class OperarioPanel extends JPanel {
         seleccionar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new OrdenDeTrabajoEditor(ordenDeTrabajoJComboBox.getSelectedItem(),principal.getM());
+                try {
+                    new OrdenDeTrabajoEditor((OrdenDeTrabajo) ordenDeTrabajoJComboBox.getSelectedItem(), principal.getM());
+                }catch (NullPointerException e1){
+                }
             }
         });
 

@@ -1,12 +1,6 @@
 package test;
 
-import main.Manager;
-import main.gui.AMOrdenDeTrabajo;
-import main.modelsAndControllers.common.MateriaPrima;
-import main.modelsAndControllers.common.Paso;
-import main.modelsAndControllers.supervisor.model.Producto;
-
-import java.util.ArrayList;
+import main.gui.Login;
 
 /**
  * Created by juanmariamarsicovetere on 19/11/2017.
@@ -15,7 +9,7 @@ public class test {
 
     public static void main(String[] args) {
 //       Login login = new Login();
-//        Login.startNewApp();
+        Login.startNewApp();
 //        Formulario formulario = new Formulario(12);
 //        new ExcepcionPropia(15234);
 
@@ -43,14 +37,14 @@ public class test {
 //        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        frame.setVisible(true);
 
-        ArrayList<Paso> pasos= new ArrayList<>();
-        for (int i=0;i<20;i++){
-            MateriaPrima materiaPrima= new MateriaPrima(i,i);
-            Paso paso = new Paso(materiaPrima,"alf"+i);
-            pasos.add(paso);
-        }
-
-        new AMOrdenDeTrabajo(new Manager(),new Producto("a",pasos));
+//        ArrayList<Paso> pasos= new ArrayList<>();
+//        for (int i=0;i<20;i++){
+//            MateriaPrima materiaPrima= new MateriaPrima(i,i);
+//            Paso paso = new Paso(materiaPrima,"alf"+i);
+//            pasos.add(paso);
+//        }
+//
+//        new AMOrdenDeTrabajo(new Manager(),new Producto("a",pasos));
 
     }
 }
