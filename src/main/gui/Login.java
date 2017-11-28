@@ -159,7 +159,7 @@ public class Login extends JFrame {
 
         buttonPanel.add(cancel);
 
-        JButton prueba = new JButton("Prueba");
+        JButton prueba = new JButton("nuevo Log in");
         prueba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -167,7 +167,7 @@ public class Login extends JFrame {
             }
         });
 
-        JButton finalizarPrueba = new JButton("Prueba3");
+        JButton finalizarPrueba = new JButton("finalizarLogIn");
         finalizarPrueba.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent s) {
