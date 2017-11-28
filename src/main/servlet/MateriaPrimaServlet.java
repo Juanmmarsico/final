@@ -10,12 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 
 /**
  * Created by juanmariamarsicovetere on 13/10/2017.
  */
-@WebServlet(name = "MateriaPrimaServlet",urlPatterns = {"/MateriaPrimaServlet"})
+@WebServlet(name = "MateriaPrimaServlet",urlPatterns = {"./MateriaPrimaServlet"})
 public class MateriaPrimaServlet extends HttpServlet {
     Manager manager = Manager.getInstanced();
 

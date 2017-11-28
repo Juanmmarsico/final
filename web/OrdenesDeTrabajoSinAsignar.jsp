@@ -11,6 +11,15 @@
     <title>Ordenes de trabajo sin asignar</title>
 </head>
 <body>
-<%--TODO llamar al manager para traer los datos de la base de datos--%>
+
+<%
+for (int i=0;i<10;i++){
+    %>
+orden de trabajo<%=request.getParameter("OrdenDeTrabajo"+i) %>
+<%
+}
+
+%>
+
 </body>
 </html>

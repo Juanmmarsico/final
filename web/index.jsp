@@ -13,7 +13,10 @@
 <body>
 <a href="consultaMateriaPrima.jsp">Consultar y pedir materia prima</a>
 
-<a href="OrdenesDeTrabajoSinAsignar.jsp">Consultar Ordenes de trabajo sin asignar</a>
+<form method="get" action="/ConsultaServlet">
+  <input type="submit">Consultar Ordenes de trabajo sin asignar
+  <%--<a href="OrdenesDeTrabajoSinAsignar.jsp">Consultar Ordenes de trabajo sin asignar</a>--%>
+</form>
 
 <a href="actualizacionMedianteArchivo.jsp">Actualizacion mediante archivo</a>
 
