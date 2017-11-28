@@ -161,7 +161,7 @@ public class SupervisorDAO extends DAO {
     }
     public ArrayList<String> getOperariosParaAsignacion()  {
         ArrayList<String> arrayList = new ArrayList<String>();
-
+        arrayList.add("");
         try {
             Statement statement = getConnection().createStatement();
             ResultSet r = statement.executeQuery("SELECT * FROM operarios");

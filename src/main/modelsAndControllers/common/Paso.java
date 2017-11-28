@@ -21,9 +21,9 @@ public class Paso {
         this.empezada = -1;
     }
 
-    public Paso(MateriaPrima materiaPrima, String fecha) {
+    public Paso(MateriaPrima materiaPrima, String detalle) {
         this.materiaPrima = materiaPrima;
-        this.detalle = fecha;
+        this.detalle = detalle;
         this.empezada = -1;
     }
 
@@ -82,4 +82,8 @@ public class Paso {
         this.fechaFin = fechaFin;
     }
 
+    @Override
+    public String toString() {
+        return  detalle;
+    }
 }
