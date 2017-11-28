@@ -25,7 +25,6 @@ public class Operario extends Persona {
 
     public Operario(int legajo) {
         this.legajo = legajo;
-        this.ordenes = ordenes;
     }
 
     public Operario(String nombre, String apellido, String dni, int legajo) {
@@ -92,4 +91,17 @@ public class Operario extends Persona {
 
         ordenDeTrabajo.agregarUnPaso(paso);
     }
+
+    public void modificarOrdenDeTrabajo(OrdenDeTrabajo o){
+        for (OrdenDeTrabajo or: ordenes){
+            if (o.getId().equals(o.getId())){
+                for (int i= 0;i<or.getPasos().size();i++){
+                    if (!or.getPasos().get(i).equals(o.getPasos().get(i))){
+                        o.modificarPaso(or.getPasos().get(i).getDetalle());
+                    }
+                }
+            }
+        }
+    }
+
 }

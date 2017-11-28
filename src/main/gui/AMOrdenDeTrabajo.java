@@ -128,6 +128,7 @@ public DefaultTableModel tableModelGenerator(Producto producto){
 
     for (int i= 0; i<producto.getPasos().size();i++){
         pasosOperarios[i][0] =  producto.getPasos().get(i);
+
         JComboBox<String> op = new JComboBox<String>(o);
         op.addActionListener(new ActionListener() {
             @Override
@@ -136,13 +137,6 @@ public DefaultTableModel tableModelGenerator(Producto producto){
                 int coloumn = 1;
                 pasoss.set(row,(Paso)getPasosOperarios().getValueAt(row,coloumn));
                 operarioPasos.set(row,(Integer)op.getSelectedItem());
-
-                System.out.println(operarioPasos.get(row));
-                System.out.println(pasoss.get(row));
-
-
-                System.out.println( getPasosOperarios().getSelectedRow());
-                System.out.println(op.getSelectedIndex());
             }
         });
         DefaultCellEditor dfc = new DefaultCellEditor(op);

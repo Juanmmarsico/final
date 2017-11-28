@@ -20,7 +20,6 @@ public class OperarioDAO extends DAO {
         int legajoOperario;
         Operario o = null;
 
-
         try {
             CallableStatement call = getConnection().prepareCall("");//el Stored procedure deberia hacer un join entre
             //la tabla de los operarios, la de Ordenes de trabajo y la de ordenes de trabajo detalle.
@@ -30,7 +29,6 @@ public class OperarioDAO extends DAO {
                     System.out.println("no hay un operario");
                throw new ExcepcionPropia("no existe el operario",legajo);
                 }
-
                 //si estoy en lo correcto el Join me devolveria las 3 tablas combinadas repitiendo los datos comunes
                 //lo que estaria eliminando son los pasos que no tengan asociado su legajo
                 if (i>0){
@@ -40,8 +38,6 @@ public class OperarioDAO extends DAO {
                     legajoOperario = r.getInt("legajo");
                     o = new Operario(nombre,apellido,dni,legajoOperario);
                 }
-
-
                     String idOrdenDeTrabajo = r.getString("IDOrden");
                     Calendar fechaDeAlta= Calendar.getInstance();
                     fechaDeAlta.setTime((r.getDate("FechaDeAlta")));
@@ -57,11 +53,7 @@ public class OperarioDAO extends DAO {
                         empezada = -1;
                     }
                 Paso paso = new Paso(new MateriaPrima(r.getInt("Codigo"),r.getInt("cantidadRestante")),r.getString("detalle"),empezada,fechaFin);
-
-
                 o.agregarOrdenDeTrabajoUnSoloPaso(idOrdenDeTrabajo,fechaDeAlta,paso,cantidad,estimacion,comentario,isUrgente);
-
-
             }
 
         } catch (SQLException e) {

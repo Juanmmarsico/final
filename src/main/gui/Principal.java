@@ -1,6 +1,7 @@
 package main.gui;
 
 
+import main.Manager;
 import main.gui.operario.OperarioPanel;
 import main.gui.supervisor.SupervisorPanel;
 import main.modelsAndControllers.operario.model.Operario;
@@ -23,6 +24,11 @@ public class Principal extends JFrame {
     private SupervisorPanel supervisorPanel;
     private OperarioPanel operarioPanel;
 
+    Manager m = Manager.getInstanced();
+
+    public Manager getM() {
+        return m;
+    }
 
     public Principal(Operario operario){
         this.setMinimumSize(new Dimension(800, 800));
